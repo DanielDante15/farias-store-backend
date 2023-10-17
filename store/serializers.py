@@ -14,6 +14,6 @@ class TenisSerializer(serializers.ModelSerializer):
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['username','password']
+        model = Usuario
+        fields = ['nome', 'password']
 
