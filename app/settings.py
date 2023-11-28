@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-8+@s!yww!@4i$2wxs+y%8c^70q*a1w8!s_1ws-#8^@1%jolw#f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,10 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
+]
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Adicione a URL do seu aplicativo React
 ]
 
 MIDDLEWARE = [
+    # ...
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # ...
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -113,6 +123,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)

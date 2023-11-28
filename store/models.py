@@ -44,36 +44,21 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
         return self.nome
 
 class Tenis(models.Model):
-    MARCAS_TENIS = [
-        ('Nike', 'Nike'),
-        ('Adidas', 'Adidas'),
-        ('Puma', 'Puma'),
-        ('New Balance', 'New Balance'),
-        ('Asics', 'Asics'),
-    ]
+  
 
-    TAMANHO_CHOICES = [
-        ('34', '34'),
-        ('35', '35'),
-        ('36', '36'),
-        ('37', '37'),
-        ('38', '38'),
-        ('39', '39'),
-        ('40', '40'),
-        ('41', '41'),
-        ('42', '42'),
-        ('43', '43'),
-        ('44', '44'),
-    ]
-    
-    imagem = models.ImageField()
-    marca = models.CharField(max_length=20, choices=MARCAS_TENIS, verbose_name='Marca')
-    modelo = models.CharField(max_length=50, verbose_name='Modelo')
-    preco = models.DecimalField(verbose_name='Preço', max_digits=12, decimal_places=2)
-    tamanho = models.CharField(max_length=2, choices=TAMANHO_CHOICES, verbose_name='Tamanho')
 
+    nomeProd = models.CharField(max_length=300, verbose_name='Nome')
+    descProd = models.CharField(max_length=300, verbose_name='Modelo')
+    precoProd = models.DecimalField(verbose_name='Preço', max_digits=12, decimal_places=2)
+    img1 = models.ImageField()
+    img2 = models.ImageField()
+    img3 = models.ImageField()
+    img4 = models.ImageField()
+    stock = models.IntegerField(max_length=1000)
+    filter = models.BooleanField()
+    home = models.BooleanField()
     def __str__(self):
-        return f'{self.marca} {self.modelo}'
+        return f'{self.nomeProd}'
 
 class Pedido(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -93,10 +78,10 @@ class PedidoItem(models.Model):
     
     @property
     def subtotal(self):
-        return self.quantidade * self.tenis.preco
+        return self.quantidade * self.tenis.precoProd
     
     def __str__(self):
-        return f'Item do Pedido #{self.pedido.pk} - {self.tenis.marca}'
+        return f'Item do Pedido #{self.pedido.pk} - {self.tenis.nomeProd}'
 
 class Endereco(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, blank=True, null=True,verbose_name='Cliente')
