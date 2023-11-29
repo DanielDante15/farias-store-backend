@@ -48,7 +48,7 @@ class Tenis(models.Model):
 
 
     nomeProd = models.CharField(max_length=300, verbose_name='Nome')
-    descProd = models.CharField(max_length=300, verbose_name='Modelo')
+    descProd = models.CharField(max_length=300, verbose_name='Deescricao')
     precoProd = models.DecimalField(verbose_name='Preço', max_digits=12, decimal_places=2)
     img1 = models.ImageField()
     img2 = models.ImageField()
