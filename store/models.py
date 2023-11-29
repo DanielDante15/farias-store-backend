@@ -52,11 +52,6 @@ class Tenis(models.Model):
     precoProd = models.DecimalField(verbose_name='Preço', max_digits=12, decimal_places=2)
     img1 = models.ImageField()
     img2 = models.ImageField()
-    img3 = models.ImageField()
-    img4 = models.ImageField()
-    stock = models.IntegerField(max_length=1000)
-    filter = models.BooleanField()
-    home = models.BooleanField()
     def __str__(self):
         return f'{self.nomeProd}'
 
